@@ -39,17 +39,18 @@ function App() {
   const {
     isLoading: isMIFormLoading,
     result: MIFormResult,
+    percentage: MIFormPercentageResult,
     handleFormSubmit: handleMIFormSubmit,
     handleResultClear: handleMIFormResultClear,
   } = useSubmitMIForm();
 
   return (
     <Background>
-      <div className="container">
-        <section className="left">
+      <div className="home-layout">
+        <section>
           <img src={TurningKick} alt="turning kick" />
         </section>
-        <section className="right">
+        <section>
           <Logo />
           <ButtonIcon
             image={Scanning}
@@ -81,6 +82,7 @@ function App() {
           imageInputRef={imageInputRef}
           isLoading={isMIFormLoading}
           result={MIFormResult}
+          percentageResult={MIFormPercentageResult}
           onUploadButtonClick={handleUploadButtonClick}
           onImageUpload={handleImageUpload}
           onImageDrop={handleImageDrop}
@@ -88,6 +90,10 @@ function App() {
           onImageClear={handleImageClear}
           onSubmit={(event) => handleMIFormSubmit(event, image)}
           onResultClear={handleMIFormResultClear}
+          onRetry={() => {
+            handleMIFormResultClear();
+            handleImageClear();
+          }}
         />
       </PopUp>
       <PopUp isModalShow={isSFMModalOpen} onClick={handleSFMModalClose}>

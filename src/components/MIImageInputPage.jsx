@@ -2,7 +2,7 @@ import React from "react";
 
 import InputImage from "./InputImage";
 
-function MIInputImagePage(props) {
+function MIImageInputPage(props) {
   const {
     imageInputRef,
     onUploadButtonClick,
@@ -22,4 +22,4 @@ function MIInputImagePage(props) {
   );
 }
 
-export default MIInputImagePage;
+export default MIImageInputPage;

@@ -1,10 +1,8 @@
 import React from "react";
 
-import MIInputImagePage from "./MIInputImagePage";
+import MIImageInputPage from "./MIImageInputPage";
 import MIImagePreviewPage from "./MIImagePreviewPage";
-
-import useUploadImage from "../hooks/use-upload-image";
-import useSubmitMIForm from "../hooks/use-submit-mi-form";
+import MIResultPage from "./MIResultPage";
 
 function MovementIdentificationForm(props) {
   const {
@@ -12,18 +10,20 @@ function MovementIdentificationForm(props) {
     imageInputRef,
     isLoading,
     result,
+    percentageResult,
     onUploadButtonClick,
     onImageUpload,
     onImageDrop,
     onImageDragOver,
     onImageClear,
     onSubmit,
+    onRetry,
   } = props;
 
   return (
     <form onSubmit={onSubmit}>
       {!image && (
-        <MIInputImagePage
+        <MIImageInputPage
           imageInputRef={imageInputRef}
           onUploadButtonClick={onUploadButtonClick}
           onImageUpload={onImageUpload}
@@ -38,7 +38,13 @@ function MovementIdentificationForm(props) {
           onImageClear={onImageClear}
         />
       )}
-      {result && <p className="result">{result}</p>}
+      {result && (
+        <MIResultPage
+          result={result}
+          percentageResult={percentageResult}
+          onClick={onRetry}
+        />
+      )}
     </form>
   );
 }

@@ -13,7 +13,7 @@ function InputImage(props) {
 
   return (
     <div
-      className="dropzone text-black"
+      className="input-image text-black"
       onDragOver={onImageDragOver}
       onDrop={onImageDrop}
     >

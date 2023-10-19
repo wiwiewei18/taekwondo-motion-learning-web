@@ -3,6 +3,7 @@ import axios from "axios";
 
 const useSubmitMIForm = () => {
   const [result, setResult] = useState(null);
+  const [percentage, setPercentage] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
 
   const switchIsLoadingState = () => {
@@ -22,15 +23,22 @@ const useSubmitMIForm = () => {
   };
 
   const handleFormSubmit = async (event, image) => {
-    event.preventDefault();
+    try {
+      event.preventDefault();
 
-    switchIsLoadingState();
+      switchIsLoadingState();
 
-    const { data } = await classifyTaekwondoMovementImage(image);
+      const { data } = await classifyTaekwondoMovementImage(image);
 
-    switchIsLoadingState();
+      switchIsLoadingState();
 
-    setResult(data);
+      setResult(data.result);
+      setPercentage(data.percentage);
+    } catch (error) {
+      switchIsLoadingState();
+
+      return window.alert("Something went wrong!");
+    }
   };
 
   const handleResultClear = () => {
@@ -39,6 +47,7 @@ const useSubmitMIForm = () => {
 
   return {
     result,
+    percentage,
     isLoading,
     handleFormSubmit,
     handleResultClear,

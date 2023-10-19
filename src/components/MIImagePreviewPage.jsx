@@ -7,14 +7,20 @@ function MIImagePreviewPage(props) {
 
   return (
     <div className="image-preview">
-      <section className="image-preview-header">
-        <button onClick={onImageClear}>
-          <img src={ArrowLeft} alt="arrow left icon" />
-        </button>
-        <p>Preview</p>
-        <button type="submit">{isLoading ? "Loading.." : "Identify"}</button>
+      <section className="header">
+        <div>
+          <button onClick={onImageClear}>
+            <img src={ArrowLeft} alt="arrow left icon" />
+          </button>
+        </div>
+        <div>
+          <p>Preview</p>
+        </div>
+        <div>
+          <button type="submit">{isLoading ? "Loading.." : "Identify"}</button>
+        </div>
       </section>
-      <section className="image-preview-content">
+      <section className="content">
         <img src={image} alt="preview image" />
       </section>
     </div>
