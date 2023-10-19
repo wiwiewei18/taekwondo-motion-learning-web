@@ -10,13 +10,13 @@ function MovementIdentificationForm(props) {
   const {
     image,
     imageInputRef,
-    onClickUploadButton,
-    onUploadImage,
-    onDropImage,
-    onDragOverImage,
-    onClearImage,
-    loading,
+    isLoading,
     result,
+    onUploadButtonClick,
+    onImageUpload,
+    onImageDrop,
+    onImageDragOver,
+    onImageClear,
     onSubmit,
   } = props;
 
@@ -25,17 +25,17 @@ function MovementIdentificationForm(props) {
       {!image && (
         <MIInputImagePage
           imageInputRef={imageInputRef}
-          onClickUploadButton={onClickUploadButton}
-          onUploadImage={onUploadImage}
-          onDropImage={onDropImage}
-          onDragOverImage={onDragOverImage}
+          onUploadButtonClick={onUploadButtonClick}
+          onImageUpload={onImageUpload}
+          onImageDrop={onImageDrop}
+          onImageDragOver={onImageDragOver}
         />
       )}
       {image && !result && (
         <MIImagePreviewPage
           image={URL.createObjectURL(image)}
-          onClearImage={onClearImage}
-          loading={loading}
+          isLoading={isLoading}
+          onImageClear={onImageClear}
         />
       )}
       {result && <p className="result">{result}</p>}

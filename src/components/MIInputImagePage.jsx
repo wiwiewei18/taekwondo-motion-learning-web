@@ -5,19 +5,19 @@ import InputImage from "./InputImage";
 function MIInputImagePage(props) {
   const {
     imageInputRef,
-    onClickUploadButton,
-    onUploadImage,
-    onDropImage,
-    onDragOverImage,
+    onUploadButtonClick,
+    onImageUpload,
+    onImageDrop,
+    onImageDragOver,
   } = props;
 
   return (
     <InputImage
       imageInputRef={imageInputRef}
-      onClickUploadButton={onClickUploadButton}
-      onUploadImage={onUploadImage}
-      onDropImage={onDropImage}
-      onDragOverImage={onDragOverImage}
+      onUploadButtonClick={onUploadButtonClick}
+      onImageUpload={onImageUpload}
+      onImageDrop={onImageDrop}
+      onImageDragOver={onImageDragOver}
     />
   );
 }

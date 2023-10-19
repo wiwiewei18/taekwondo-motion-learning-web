@@ -18,22 +18,21 @@ const useUploadImage = () => {
     return image;
   };
 
-  const onClickUploadButton = (event) => {
+  const handleUploadButtonClick = (event) => {
     event.preventDefault();
 
     imageInputRef.current.click();
   };
 
-  const onUploadImage = (event) => {
+  const handleImageUpload = (event) => {
     const image = event.target.files[0];
-
-    console.log("raw", event.target.files);
 
     setImage(image);
   };
 
-  const onDropImage = (event) => {
+  const handleImageDrop = (event) => {
     event.preventDefault();
+
     const images = event.dataTransfer.files;
 
     const image = validateDroppedImage(images);
@@ -41,13 +40,13 @@ const useUploadImage = () => {
     if (image) setImage(image);
   };
 
-  const onDragOverImage = (event) => {
+  const handleImageDragOver = (event) => {
     event.preventDefault();
 
     return;
   };
 
-  const onClearImage = (event) => {
+  const handleImageClear = (event) => {
     if (event) event.preventDefault();
 
     setImage(null);
@@ -56,11 +55,11 @@ const useUploadImage = () => {
   return {
     image,
     imageInputRef,
-    onClickUploadButton,
-    onUploadImage,
-    onDropImage,
-    onDragOverImage,
-    onClearImage,
+    handleUploadButtonClick,
+    handleImageUpload,
+    handleImageDrop,
+    handleImageDragOver,
+    handleImageClear,
   };
 };
 

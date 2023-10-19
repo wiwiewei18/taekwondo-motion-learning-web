@@ -14,42 +14,54 @@ import useUploadImage from "./hooks/use-upload-image";
 import useSubmitMIForm from "./hooks/use-submit-mi-form";
 
 function App() {
-  const { modal: isMIModalShow, onSwitchModalState: onSwitchMIModalState } =
-    useModal();
-  const { modal: isSFMModalShow, onSwitchModalState: onSwitchSFMModalState } =
-    useModal();
+  const {
+    modal: isMIModalOpen,
+    handleModalOpen: handleMIModalOpen,
+    handleModalClose: handleMIModalClose,
+  } = useModal();
+
+  const {
+    modal: isSFMModalOpen,
+    handleModalOpen: handleSFMModalOpen,
+    handleModalClose: handleSFMModalClose,
+  } = useModal();
+
   const {
     image,
     imageInputRef,
-    onClickUploadButton,
-    onUploadImage,
-    onDropImage,
-    onDragOverImage,
-    onClearImage,
+    handleUploadButtonClick,
+    handleImageUpload,
+    handleImageDrop,
+    handleImageDragOver,
+    handleImageClear,
   } = useUploadImage();
-  const { loading, result, onSubmit, onClearResult } = useSubmitMIForm({
-    image,
-  });
+
+  const {
+    isLoading: isMIFormLoading,
+    result: MIFormResult,
+    handleFormSubmit: handleMIFormSubmit,
+    handleResultClear: handleMIFormResultClear,
+  } = useSubmitMIForm();
 
   return (
     <Background>
       <div className="container">
         <section className="left">
-          <img src={TurningKick} />
+          <img src={TurningKick} alt="turning kick" />
         </section>
         <section className="right">
           <Logo />
           <ButtonIcon
             image={Scanning}
             imageAlt="scanning icon"
-            onClick={onSwitchMIModalState}
+            onClick={handleMIModalOpen}
           >
             Movement Identification
           </ButtonIcon>
           <ButtonIcon
             image={Steganography}
             imageAlt="steganography icon"
-            onClick={onSwitchSFMModalState}
+            onClick={handleSFMModalOpen}
             disabled={true}
           >
             Search for Movement
@@ -57,28 +69,28 @@ function App() {
         </section>
       </div>
       <PopUp
-        isModalShow={isMIModalShow}
-        onClick={() => {
-          onSwitchMIModalState();
-          onClearResult();
-          onClearImage();
+        isModalShow={isMIModalOpen}
+        onModalClose={() => {
+          handleMIModalClose();
+          handleMIFormResultClear();
+          handleImageClear();
         }}
       >
         <MovementIdentificationForm
           image={image}
           imageInputRef={imageInputRef}
-          onClickUploadButton={onClickUploadButton}
-          onUploadImage={onUploadImage}
-          onDropImage={onDropImage}
-          onDragOverImage={onDragOverImage}
-          onClearImage={onClearImage}
-          loading={loading}
-          result={result}
-          onSubmit={onSubmit}
-          onClearResult={onClearResult}
+          isLoading={isMIFormLoading}
+          result={MIFormResult}
+          onUploadButtonClick={handleUploadButtonClick}
+          onImageUpload={handleImageUpload}
+          onImageDrop={handleImageDrop}
+          onImageDragOver={handleImageDragOver}
+          onImageClear={handleImageClear}
+          onSubmit={(event) => handleMIFormSubmit(event, image)}
+          onResultClear={handleMIFormResultClear}
         />
       </PopUp>
-      <PopUp isModalShow={isSFMModalShow} onClick={onSwitchSFMModalState}>
+      <PopUp isModalShow={isSFMModalOpen} onClick={handleSFMModalClose}>
         Inprogress..
       </PopUp>
     </Background>

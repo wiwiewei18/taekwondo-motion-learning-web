@@ -5,29 +5,29 @@ import Image from "../assets/image.png";
 function InputImage(props) {
   const {
     imageInputRef,
-    onClickUploadButton,
-    onUploadImage,
-    onDropImage,
-    onDragOverImage,
+    onUploadButtonClick,
+    onImageUpload,
+    onImageDrop,
+    onImageDragOver,
   } = props;
 
   return (
     <div
       className="dropzone text-black"
-      onDragOver={onDragOverImage}
-      onDrop={onDropImage}
+      onDragOver={onImageDragOver}
+      onDrop={onImageDrop}
     >
       <img src={Image} alt="image icon" />
       <p>Drag your photo here</p>
       <input
         type="file"
         accept="image/*"
-        onChange={onUploadImage}
+        onChange={onImageUpload}
         hidden
         ref={imageInputRef}
         name="uploadedImage"
       />
-      <button className="button" onClick={onClickUploadButton}>
+      <button className="button" onClick={onUploadButtonClick}>
         Select from Computer
       </button>
     </div>

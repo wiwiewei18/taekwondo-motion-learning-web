@@ -3,9 +3,10 @@ import { useState } from "react";
 const useModal = () => {
   const [modal, setModal] = useState(false);
 
-  const onSwitchModalState = () => setModal((prev) => !prev);
+  const handleModalOpen = () => setModal(true);
+  const handleModalClose = () => setModal(false);
 
-  return { modal, onSwitchModalState };
+  return { modal, handleModalOpen, handleModalClose };
 };
 
 export default useModal;

@@ -1,16 +1,15 @@
 import { useState } from "react";
 import axios from "axios";
 
-const useSubmitMIForm = (props) => {
-  const [loading, setLoading] = useState(false);
+const useSubmitMIForm = () => {
   const [result, setResult] = useState(null);
-  const { image } = props;
+  const [isLoading, setIsLoading] = useState(false);
 
-  const updateLoading = () => {
-    setLoading((prev) => !prev);
+  const switchIsLoadingState = () => {
+    setIsLoading((prev) => !prev);
   };
 
-  const classifyImage = async () => {
+  const classifyTaekwondoMovementImage = async (image) => {
     return axios.post(
       "http://localhost:5000/classify-taekwondo-movement-image",
       { image },
@@ -22,27 +21,27 @@ const useSubmitMIForm = (props) => {
     );
   };
 
-  const onSubmit = async (event) => {
+  const handleFormSubmit = async (event, image) => {
     event.preventDefault();
 
-    updateLoading();
+    switchIsLoadingState();
 
-    const { data } = await classifyImage();
+    const { data } = await classifyTaekwondoMovementImage(image);
 
-    updateLoading();
+    switchIsLoadingState();
 
     setResult(data);
   };
 
-  const onClearResult = () => {
+  const handleResultClear = () => {
     setResult(null);
   };
 
   return {
-    loading,
     result,
-    onSubmit,
-    onClearResult,
+    isLoading,
+    handleFormSubmit,
+    handleResultClear,
   };
 };
 
