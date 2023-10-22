@@ -12,7 +12,7 @@ const useSubmitMIForm = () => {
 
   const classifyTaekwondoMovementImage = async (image) => {
     return axios.post(
-      "http://localhost:5000/classify-taekwondo-movement-image",
+      `https://wiwiewei18-taekwondo-motion-learning.hf.space/classify-taekwondo-movement-image`,
       { image },
       {
         headers: {
