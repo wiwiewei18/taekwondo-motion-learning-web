@@ -11,6 +11,7 @@
   --black: #36454f;
   --black-50: #00000080;
   --gray: #d9d9d9;
+  --white: #fff;
   /* font */
   --text-roboto: "Roboto", sans-serif;
   --text-boogaloo: "Boogaloo", sans-serif;
@@ -38,6 +39,9 @@
 }
 .text-baby-blue {
   color: var(--baby-blue);
+}
+.text-white {
+  color: var(--white);
 }
 .text-black {
   color: var(--black);
@@ -77,20 +81,59 @@ img {
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: center;
   height: 100vh;
   padding: 0 5rem;
 }
 
-.home-layout section:nth-child(1) {
-  flex: 0.46;
+/* Mobile */
+@media only screen and (max-width: 900px) {
+  .home-layout section:nth-child(1) {
+    display: none;
+  }
+
+  .home-layout section:nth-child(2) {
+    z-index: 1;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
 }
 
-.home-layout section:nth-child(2) {
-  flex: 0.54;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
+/* Tablet */
+@media only screen and (min-width: 900px) and (max-width: 1200px) {
+  .home-layout section:nth-child(1) {
+    position: absolute;
+    height: 95%;
+    left: 0rem;
+  }
+
+  .home-layout section:nth-child(2) {
+    z-index: 1;
+    position: absolute;
+    right: 5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+}
+
+/* Desktop */
+@media only screen and (min-width: 1200px) {
+  .home-layout section:nth-child(1) {
+    flex: 0.46;
+  }
+
+  .home-layout section:nth-child(2) {
+    flex: 0.54;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
 }
 /* #endregion */
 
@@ -99,6 +142,9 @@ img {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+.logo h1 {
+  font-weight: lighter;
 }
 /* #endregion */
 
@@ -142,9 +188,10 @@ img {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   background-color: var(--black-50);
   display: none;
+  z-index: 2;
 }
 
 .popup-show {

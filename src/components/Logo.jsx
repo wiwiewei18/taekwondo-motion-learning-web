@@ -6,7 +6,7 @@ function Logo() {
   return (
     <div className="logo">
       <img src={TaekwondoHangeul} alt="taekwondo hangeul" />
-      <h1 className="text-black text-boogaloo">Taekwondo Motion Learning</h1>
+      <h1 className="text-white text-boogaloo">Taekwondo Motion Learning</h1>
     </div>
   );
 }
